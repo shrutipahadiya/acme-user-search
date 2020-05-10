@@ -3,12 +3,8 @@ h1{
 }
 
 table{
-  
-    border : 2px solid white;
-    
-
-}
-
+      border : 2px solid white;
+   }
 
 h1{
     text-align: center;
@@ -17,7 +13,6 @@ h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-
 #term{
     justify-content: center;
     display:block;
@@ -25,39 +20,30 @@ h1{
     text-align: center;
     font-size: 25px;
     margin: 10px 0px 10px 10px;
-
 }
 
 p{
-   
-    text-align: center;
+      text-align: center;
     font-size: 25px;
-   
-}
+ }
+
 img {
     border-radius: 50%;
-   
-  }
+     }
 
 .firstname{
    width:25%;
   /* border : 2px solid black;*/
-
 }
 
 .lastname{
     width:25%;
- 
- }
+  }
 
  .email{
     width:33%;
- 
- }
+  }
 
  .title{
     width:33%;
- 
- }
-
-
+  }

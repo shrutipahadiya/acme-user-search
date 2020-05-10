@@ -1,13 +1,13 @@
 const outerTable = document.querySelector('#OuterTable');
 const searchBox = document.querySelector('#term');
 const clearLink = document.querySelector('#clear');
-console.log(searchBox.value);
 
-console.log(outerTable);
-console.log(searchBox);
+// console.log(searchBox.value);
+// console.log(outerTable);
+// console.log(searchBox);
 
 
-searchBox.addEventListener('change', (ev) => {
+/*searchBox.addEventListener('change', (ev) => {
     let term = ev.target.value;
     outerTable.innerHTML = ''
     ev.preventDefault()
@@ -27,16 +27,17 @@ searchBox.addEventListener('change', (ev) => {
                 });           
                 }
             )}
- } )
+ } )*/
 
+ searchBox.addEventListener('change',(ev)=>{
+    // console.log("input boxchange event ~~~~");
+    window.location.hash = searchBox.value
+})
 
+window.addEventListener('hashchange',fetchAndRender)
  
 
 function createHeaders() {
-
-
-    
-
     const row = document.createElement('tr')
 
     const tdAvatar = document.createElement('td')
@@ -44,7 +45,6 @@ function createHeaders() {
     avatarHeader.innerHTML = ''
     tdAvatar.append(avatarHeader)
     row.append(tdAvatar)
-
 
     const tdFirstName = document.createElement('td')
     const firstNameHeader = document.createElement('h3')
@@ -70,32 +70,23 @@ function createHeaders() {
     tdTitle.append(titleHeader)
     row.append(tdTitle)
 
-    return row
-
+     return row
 }
-
 
 function createUserRow(user) {
     // console.log(user);
-   
-    
-
-
     const row = document.createElement('tr')
     const avatar = document.createElement('td')
     const img = document.createElement('img')
     img.setAttribute('src',`${user.avatar}`)
-   
     avatar.append(img)
     row.append(avatar);
-   
-  
+     
     const firstName = document.createElement('td')
     firstName.classList.add('firstname');
     firstName.innerText = `${user.firstName}`;
     row.append(firstName);
-    
-    
+        
     const lastName = document.createElement('td')
     lastName.classList.add('lastname');
     lastName.innerText = `${user.lastName}`;
@@ -105,15 +96,13 @@ function createUserRow(user) {
     email.classList.add('email');
     email.innerText = `${user.email}`;
     row.append(email);
-   
-   
+      
     const title = document.createElement('td')
     email.classList.add('title');
     title.innerText = `${user.title}`;
     row.append(title);
     // console.log(row);
     return row;
-
 }
 
 clearLink.addEventListener("click",(ev) => {
@@ -121,19 +110,18 @@ clearLink.addEventListener("click",(ev) => {
     searchBox.value = '';
 })
 
-
 function fetchAndRender(){
+    //console.log("fetchAndRender called !!!!!!")
     const term =  window.location.hash.slice(1) || '';
     outerTable.innerHTML = ''
     searchBox.value = term
-    console.log("term in hashchange " , term);
+   // console.log("fetchAndRender term in hashchange " , term);
     if (term != null && term != undefined && term != "") {
-     
-        console.log("inside if");
+      // console.log("fetchAndRender inside if");
        fetch(`https://acme-users-api-rev.herokuapp.com/api/users/search/${term}`)
             .then(response => response.json())
             .then(data => {
-                console.log("data ", data)
+               // console.log("fetchAndRender data ", data)
                 if(data.count !=0){
                outerTable.append(createHeaders())
                 }
@@ -142,11 +130,4 @@ function fetchAndRender(){
                 });           
                 }
             )}
-
 }
-
-searchBox.addEventListener('change',(ev)=>{
-    window.location.hash = searchBox.value
-})
-
-window.addEventListener('hashchange',fetchAndRender)
