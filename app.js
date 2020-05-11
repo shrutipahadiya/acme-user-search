@@ -30,7 +30,7 @@ const clearLink = document.querySelector('#clear');
  } )*/
 
  searchBox.addEventListener('change',(ev)=>{
-    // console.log("input boxchange event ~~~~");
+    console.log("input boxchange event ~~~~");
     window.location.hash = searchBox.value
 })
 
